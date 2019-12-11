@@ -1,0 +1,199 @@
+\blue{
+\begin{fTheorem}
+$\forall A\in 2^\Omega,$
+$$
+\Pr(A) = 1 - \Pr(\bar{A})
+$$
+\end{fTheorem}
+}
+%
+\begin{proof}[Preuve]
+Soit $A\in 2^\Omega$, 
+on a :
+$$A\cap \bar{A} = \emptyset$$
+d'où par définition de $\Pr$ :
+$$\Pr(A\cup \bar{A}) = \Pr(A) + \Pr(\bar{A})$$
+
+On a : $A\cup \bar{A} = \Omega$ ; et par définition de $\Pr$ :
+$\Pr(\Omega) = 1$ ; donc :
+$$
+\Pr(A\cup \bar{A}) = 1
+$$
+
+Par suite, 
+$$1 = \Pr(A) + \Pr(\bar{A}) 
+\iff 1-\Pr(\bar{A})  = \Pr(A) $$
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\blue{
+\begin{fTheorem}
+$$\Pr(\emptyset) = 0$$
+\end{fTheorem}
+}
+\begin{proof}
+$$
+\Pr(\emptyset) = 1 - \Pr(\Omega) 
+$$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\blue{
+\begin{fTheorem}
+$\forall A, B \in 2^\Omega$, 
+$$
+\Pr(A\cup B) = \Pr(A) + \Pr(B) - \Pr(A\cap B)
+$$
+\end{fTheorem}
+}
+%
+\begin{proof}[Preuve]
+Soit $A, B \in 2^\Omega$ ;
+On pose :
+$$A' := A - (A\cap B)$$
+$$B' := B - (A\cap B)$$
+
+On a :
+$A'\cap B' = \emptyset$
+et donc, par définition de $\Pr$,
+$$\underline{\Pr(A' \cup B') = \Pr(A') + P(B')}$$
+
+On a :
+$$(A\cap B) \cap (A'\cup B') = \emptyset$$
+et donc, par définition de $\Pr$,
+$$\Pr ((A\cap B) \cup (A'\cup B')) = 
+\Pr(A\cap B) + \Pr(A'\cup B')
+$$
+En outre, 
+$$A\cup B = (A\cap B) \cup (A'\cup B')$$
+Donc, 
+$$\Pr(A \cup B) = 
+\Pr(A\cap B) + \Pr(A'\cup B')
+$$
+Soit, 
+$$
+\underline{
+\Pr(A \cup B) = 
+\Pr(A\cap B) + \Pr(A') + \Pr(B')
+} \tab(\mE_1)
+$$
+
+On a :
+$$ A = (A\cap B) \cup A' \text{ et } (A\cap B) \cap A' = \emptyset$$
+$$ B = (A\cap B) \cup B' \text{ et } (A\cap B) \cap B' = \emptyset$$
+D'où par définition de $\Pr$ :
+$$ \Pr(A) = \Pr(A\cap B) + \Pr(A') \iff 
+\underline{\Pr(A') = \Pr(A) - \Pr(A\cap B)} \tab(\mE_2)$$
+$$ \Pr(B) = \Pr(A\cap B) + \Pr(B') \iff 
+\underline{\Pr(B') = \Pr(B) - \Pr(A\cap B)} \tab(\mE_3)$$
+
+Par $(\mE_1)$, $(\mE_2)$ et $(\mE_3)$, 
+$$
+\Pr(A\cup B) = 
+	\Pr(A\cap B) + 
+	\Pr(A) - \Pr(A\cap B) +
+	\Pr(B) - \Pr(A\cap B)
+$$
+D'où
+$$
+\Pr(A\cup B) = 
+\Pr(A)+
+\Pr(B) - \Pr(A\cap B)
+$$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\blue{
+\begin{fTheorem}
+Soient deux événements $A, B \in 2^\Omega$, 
+$$
+A  \subset B \Rightarrow \Pr(A) \le \Pr(B)
+$$
+\end{fTheorem}
+}
+\begin{proof}[Preuve]
+$ $
+\begin{enumerate}
+\item \underline{Cas 1 : $B=\emptyset$}
+\\
+D'où, $A=\emptyset$ ; et donc $\Pr(A)=\Pr(B)=0$.
+
+\item \underline{Cas 2 : $B\not=\emptyset$}
+\\
+$\exists C\in 2^\Omega$, tel que :
+$A\cup C =B$ et $A\cap C=\emptyset$.
+\\
+D'où, 
+$$
+\Pr(A\cup C) = \Pr(A) + \Pr(C) = \Pr(B)
+$$
+Par positivité de la probabilité, $\Pr(A) \leq \Pr(B)$.
+\end{enumerate}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\blue{
+\begin{fTheorem}
+Soient deux événements $A, B \in 2^\Omega$, 
+$$
+A  \subset B \Rightarrow \Pr(A\cap B) = \Pr(A)
+$$
+\end{fTheorem}
+}
+\begin{proof}[Preuve]
+$$
+A  \subset B \Rightarrow
+	A\cap B = A
+$$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\blue{
+\begin{fLemma}
+Soit $A\in 2^\Omega$ tel que :
+\begin{enumerate}[(i)]
+	\item $A\subset B$ ;
+	\item $B\not=\emptyset$ ;
+\end{enumerate}
+Alors, $\exists C\in 2^\Omega$, tel que :
+\begin{enumerate}[(i)]
+	\item $A\cup C = B$ ;
+	\item $A\cap C = \emptyset$.
+\end{enumerate}
+\end{fLemma}
+}
+\begin{proof}[Preuve]
+Sous les hypothèses, deux cas se présentent : 
+\begin{enumerate}
+\item $A=\emptyset$ ; alors $C=B$ ;
+\item $A\not=\emptyset$ ; 
+on pose : $C=\bar{A}\cap B$ ; 
+en effet :
+	\begin{enumerate}[(i)]
+	\item 
+	$
+A\cup C = A\cup (\bar{A}\cap B) = 
+	(A\cup \bar{A}) \cap (A\cup B) = \Omega \cap B = B 
+	$ ;
+	\item 
+	$
+A\cap C = A\cap (\bar{A}\cap B) = (A\cap \bar{A}) \cap B = 
+	\emptyset \cap B = \emptyset
+	$.
+	\end{enumerate}
+\end{enumerate}
+\end{proof}
+
+

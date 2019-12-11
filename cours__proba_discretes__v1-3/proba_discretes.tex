@@ -1,0 +1,301 @@
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+%%% ----------------------------------------------------------
+%%% Addings
+\input{../../latex_additions/__technical_additions}
+%%% End of the addings
+%%% ----------------------------------------------------------
+
+
+
+\title{Probabilités discrètes\\ -- version 1.3}
+\date{\vspace{-5ex}}
+\author{Dr M. GUEDJ}
+
+\begin{document}
+\renewcommand{\contentsname}{Table des Matières}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LICENCE CC %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{center}
+	\includegraphics[scale=0.5]{licence/licence_cc.png}
+	
+	\begin{small}
+Probabilités discrètes de Dr Michaël GUEDJ est mis à disposition selon les termes de la licence Creative Commons Attribution 4.0 International.
+Fondé(e) sur une œuvre à 
+		\url{https://github.com/michaelguedj/ens__proba}.
+	\end{small}
+\end{center}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+
+%%%
+%%%
+
+\section{Loi de Probabilité}
+\input{loi_proba}
+
+\section{Premiers résultats}
+\input{premiers_res}
+
+\section{Probabilité conditionnelle}
+\input{proba_conditionnelle}
+
+\section{Théorème des probabilités totales}
+\input{proba_totales}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Application : paradoxe de Monty Hall}
+\input{monty_hall}
+
+\section{Théorème de Bayes}
+\input{th_bayes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Application : tests diagnostiques} 
+%\input{tests_diag}
+
+\section{Variable aléatoire}
+\input{var}
+
+
+%\subsection{Cas des populations}
+%
+%Pour simplifier les preuves, 
+%on réduit ici un individu à la valeur le caracterisant
+%(sous entendu la valeur nous intéressant).
+%
+%\begin{definition}[Population]
+%Une population est un triplet $(\frak{P}, \frak{V}, val)$
+%tel que : 
+%\begin{itemize}
+%\item $\frak{P}$ est un ensemble d'individus :
+%$$\frak{P}=\{ \frak{p}_1, ..., \frak{p}_n \}$$
+%\item $\frak{V}\subset \mathbb{R}$ est un ensemble de valeurs ; 
+%\item $val : \frak{P} \rightarrow \frak{V}$. 
+%\end{itemize}
+%\end{definition}
+%
+%Soit la fonction $val : \frak{P} \rightarrow X(\Omega)$, 
+%associant à chaque individu une valeur.
+%
+%\begin{definition}[Population]
+%Une population $\frak{P}$ est un multi-ensemble (de valeurs) :
+%$$\frak{P}=< \frak{p}_1, ..., \frak{p}_n >$$. 
+%\end{definition}
+%
+%\begin{definition}[Moyenne d'une population ou moyenne réelle]
+%$$\mu = \frac{1}{n}\sum_{i=1}^n \frak{p}_i$$
+%\end{definition}
+%
+%\begin{definition}[Moyenne d'une population ou moyenne réelle]
+%$$\mu = \frac{1}{n}\sum_{i=1}^n val(\frak{p}_i)$$
+%\end{definition}
+%
+%\begin{definition}
+%$X\in\{ \frak{p}_i: i=1, ..., n\} = \{x_i, i\}$
+%est une variable aléatoire caracterisant la population $\frak{P}$.
+%\end{definition}
+%
+%\begin{proposition}
+%$$
+%E(X) = \mu
+%$$
+%\end{proposition}
+%
+%\begin{proof}[Preuve]
+%
+%$$
+%\tilde{x_i} := \{ \frak{p}_j : \frak{p}_j = x_i\}
+%$$
+%
+%$$
+%n_i := | \tilde{x_i} |
+%$$
+%
+%
+%
+%$$
+%P(X=x_i) = \frac{n_i}{n}
+%$$ 
+%
+%$$
+%E(X) = \sum_{x_i\in X(\Omega)} x_i . P(X=x_i)
+%$$
+%
+%$$
+%E(X) = \sum_{x_i\in X(\Omega)} 
+%	x_i . 
+%	\frac{n_i}{n}
+%$$
+%
+%$$
+%E(X) = \sum_{x_i\in X(\Omega)} 
+%		\sum_{\frak{p}\in \tilde{x_i}}
+%						\frak{p}.\frac{1}{n}
+%$$
+%
+%$$
+%E(X) = \frac{1}{n}
+%	   \sum_{x_i\in X(\Omega)} 
+%		\sum_{\frak{p}\in \tilde{x_i}}
+%						\frak{p}
+%$$
+%
+%$$
+%E(X) = \frac{1}{n} \sum_{i=1}^{n} \frak{p}_i 
+%$$
+%
+%
+%$$
+%n_i := | \{ \frak{p}_j : val(\frak{p}_j) = x_i\}|
+%$$
+%
+%$$
+%p_{x_i} := \{ \frak{p}_j : val(\frak{p}_j) = x_i\}
+%$$
+%
+%$$
+%P(X=x_i) = \frac{n_i}{n}
+%$$ 
+%
+%$$
+%E(X) = \sum_{x_i\in X(\Omega)} x_i . P(X=x_i)
+%$$
+%
+%$$
+%E(X) = \sum_{x_i\in X(\Omega)} 
+%	x_i . 
+%	\frac{n_i}{n}
+%$$
+%
+%$$
+%E(X) = \sum_{x_i\in X(\Omega)} 
+%		\sum_{\frak{p}\in \frak{p}_{x_i}}
+%						val(\frak{p}).\frac{1}{n}
+%$$
+%
+%$$
+%E(X) = \frac{1}{n}
+%	   \sum_{x_i\in X(\Omega)} 
+%		\sum_{\frak{p}\in \frak{p}_{x_i}}
+%						val(\frak{p})
+%$$
+%
+%$$
+%E(X) = \frac{1}{n} \sum_{i=1}^{n} val(\frak{p}_i) 
+%$$
+%
+%\end{proof}
+%
+%\begin{proposition}[Variance réelle]
+%$$
+%V(X) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2
+%$$
+%\end{proposition}
+%
+%\begin{proof}
+%
+%Considérons le multi-ensemble :
+%$$\frak{P}'
+%:= <(x_i-\mu)^2 : i=1, ..., n>
+%$$
+%
+%Considérons la population 
+%$\frak{P}' := \{ \frak{p}'_i : i=1, ..., n \}
+%$.
+%La fonction $val':\frak{P}' \rightarrow Y(\Omega)$
+%associe à chaque individu une valeur.
+%On pose : 
+%$$
+%Y(\Omega) := \{(x_i - \mu)^2 : i=1, ..., n\} 
+%\text{ (scholie :  ensemble et non multi-ensemble !) }
+%$$
+%
+%On a :
+%$$
+%E(Y) = \mu_{val'} = \sum_{i=1}^n val'(\frak{p}'_i)
+%$$
+%
+%\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Lois usuelles discrètes}
+%Dans ce qui suit $|X(\Omega)|=n$.
+%\subsection{Loi uniforme}
+%\begin{definition}
+%$X$ suit une loi uniforme de paramètre $n$ si :
+%$$\forall x_i\in X(\Omega), P(X=x_i) = \frac{1}{n}$$
+%(les valeurs prises par la variable aléatoire sont équiprobables).
+%\end{definition}
+%
+%\begin{proposition}
+%Si $X(\Omega) = \{1, ..., n\}$, 
+%Alors
+% $$E(X) = \frac{n+1}{n}$$
+%\end{proposition}
+%
+%%\begin{proof}[Preuve]
+%%$$E(X) = \sum_{i=1}^{n} x_i P(X=x_i) = \sum_{i=1}^{n} x_i .\frac{1}{n}
+%%=\frac{1}{n} \sum_{i=1}^{n} x_i$$
+%%Selon l'hypothèse $X(\Omega) = \{1, ..., n\}$ :
+%%$$E(X) =\frac{1}{n} \sum_{i=1}^{n} i$$
+%%Rappelons que :
+%%$$ \sum_{i=1}^{n} i = \frac{(n+1).n}{2}$$
+%%D'où, 
+%%$$E(X) =\frac{1}{n} . \frac{(n+1).n}{2}$$
+%%$$E(X) = \frac{n+1}{2} $$
+%%\end{proof}
+%
+%
+%\begin{tabular}{|l|l|l|l|l|}
+%  \hline
+%  Loi & $X(\Omega)$ & $P(X=k)$ & E(X) & V(X) \\ \hline
+%  \hline
+%  Uniforme & \{1, ..., n\} & 1.3 & 0 & 0 \\ \hline
+%  Bernouilli & \{0, ..., n\} & 2.3 & 0 & 0 \\ \hline
+%  Binomiale & \{0, ..., n\} & 2.3 & 0 & 0 \\ \hline
+%  Poisson & $\mathbb{N}$ & 2.3 & 0 & 0 \\ \hline
+%\end{tabular}
+%
+%\subsection{Loi Bernoulli}
+%\subsection{Loi Binomiale}
+%\subsection{Loi Poisson}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{todo: stat de base }
+%variance empirique
+%\begin{definition}[variance, écart type]
+%$~$
+%\begin{itemize}
+%\item Variance : 
+%\item Ecart type : $\sigma (X) = \sqrt{V(X)}$
+%\end{itemize}
+%\end{definition}
+%
+%Indicateurs statistiques courrant.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

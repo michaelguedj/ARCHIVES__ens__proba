@@ -1,0 +1,190 @@
+
+\blue{
+\begin{fDefinition}[Probabilité conditionnelle]
+Une probabilité conditionnelle est la probabilité d'un événement 
+sachant qu'un autre événement a eu lieu.
+Soient deux événements $A$ et $B$ (i.e. $A,B\in 2^\Omega$), 
+si $\Pr(A)\not=0$, alors la probabilité conditionnelle de $B$
+conditionnée par $A$ (aussi appelée probabilité de $B$ sachant $A$) est définie par : 
+$$
+\Pr(B | A) = \frac{\Pr(A\cap B)}{\Pr(A)}
+$$
+\end{fDefinition}}
+
+\noindent
+\textbf{Exemple.}
+Soit une classe de lycée. Nous considérons les événements suivants :
+\begin{itemize}
+\item[--] F : `'un élève est une fille'';
+\item[--] A : ``un élève étudie l'allemand''.
+\end{itemize}
+
+La classe vérifie :
+\begin{center}
+\begin{tabular}{|l|c|r|}
+  \hline
+   & $F$ & $\neg F$ \\
+  \hline
+  $A$ & 10 & 7 \\
+  $\neg A$ & 4 & 9 \\
+  \hline
+\end{tabular}
+\end{center}
+
+Quelle est la probabilité qu'un élève étudie l'allemand, sachant que cet élève est une fille
+(i.e. $\Pr(A|F)$) ?
+On a par définition :
+$$
+\Pr(A|F) = \frac{\Pr(A \wedge F)}{\Pr(F)}
+$$
+Ici :
+$$
+\Pr(A|F)= \frac{\text{Nombre de filles étudiant l'allemand}}
+			 {\text{Nombre de filles}}
+$$
+Soit :
+$$
+\Pr(A|F) = \frac{10}{14} = \frac{5}{7}
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\blue{
+\begin{fTheorem}
+$\forall A,B\in 2^\Omega$, $\Pr(A)\not=0$,
+$$
+\Pr(A\cap B) = \Pr(B|A) . \Pr(A)
+$$ 
+\end{fTheorem}
+}
+\begin{proof}
+$$
+\Pr(B | A) = \frac{\Pr(A\cap B)}{\Pr(A)}
+\iff
+\Pr(B|A) . \Pr(A) = \Pr(A\cap B) 
+$$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\blue{
+\begin{fLemma}
+Soient $A_1, A_2 ..., A_k$ des événements tels que 
+$\Pr(A_1\cap...\cap A_k) \not= 0$. Alors :
+$\forall i\in\{1, ..., k\}, \Pr(A_1\cap...\cap A_i) \not= 0$.
+\end{fLemma}}
+
+\begin{proof}[Preuve]
+On pose :
+$$B_i := A_1\cap...\cap A_i$$
+
+On a alors, $ \forall i\in \{1, ..., k\}$, 
+$$B_k\subset B_i$$
+
+D'où, $\forall i\in \{1, ..., k\}$, 
+$\exists C \subset \Omega, 
+$ tel que :
+$$B_i = B_k \cup C ~ \text{ et } ~  B_k\cap C=\emptyset$$
+%
+Par hypothèse, $\Pr(B_k)\not=0$ et $\Pr(C) \in [0,1]$.
+On en déduit : 
+$$\Pr(B_i) = \Pr(B_k) + \Pr(C) \not= 0 $$ 
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\blue{
+\begin{fTheorem}
+Soient $A_1, A_2 ..., A_k$ des événements tels que :
+\begin{enumerate}[(i)]
+\item $k\geq 2$ ; 
+\item $\Pr(A_1\cap...\cap A_{k-1})\not = 0$ ;
+\end{enumerate}
+Alors :
+$$
+\Pr(A_1\cap...\cap A_k) =
+\Pr(A_1) . \Pr(A_2|A_1) . \Pr(A_3|A_1\cap A_2)
+...
+\Pr(A_k|A_1\cap A_2\cap...\cap A_{k-1})
+$$
+\end{fTheorem}
+}
+
+\begin{proof}[Preuve]
+On démontre, par récurrence, 
+la propriété $\Pi$, définie ci-après, pour 
+$\iota\in\{2, ..., k\}$ :
+$$
+\Pi(\iota) : 
+\Pr(A_1\cap...\cap A_\iota) =
+\Pr(A_1) . \Pr(A_2|A_1) . \Pr(A_3|A_1\cap A_2)
+...
+\Pr(A_\iota|A_1\cap A_2\cap...\cap A_{\iota-1})
+$$
+
+\begin{enumerate}
+\item \underline{Cas initial :}
+Par hypothèse, et 
+le lemme précédant, on a : $\Pr(A_1)\not=0$, d'où :
+$$
+\Pi(2) : 
+\Pr(A_1\cap A_2) =
+\Pr(A_1) . \Pr(A_2|A_1)
+$$
+
+\item \underline{Hypothèse de récurrence :}
+Pour $\kappa \in \{2, ..., k-1\}$, 
+$$\Pi(\kappa) : 
+\Pr(A_1\cap...\cap A_\kappa) =
+\Pr(A_1) . \Pr(A_2|A_1) . \Pr(A_3|A_1\cap A_2)
+...
+\Pr(A_\kappa|A_1\cap A_2\cap...\cap A_{\kappa-1})
+$$
+
+\item \underline{Hérédité :}
+On a :
+$$\Pr(A_1\cap...\cap A_\kappa \cap A_{\kappa+1})
+=
+\Pr(A_{\kappa+1} \cap (A_1\cap...\cap A_\kappa))
+$$
+
+Par hypothèse, et
+le lemme précédant, 
+$$\Pr(A_1\cap...\cap A_\kappa) \not=0$$
+D'où, 
+$$
+\Pr(A_{\kappa+1} \cap (A_1\cap...\cap A_\kappa))
+=
+\Pr(A_{\kappa+1} | A_1\cap...\cap A_\kappa) .
+\Pr(A_1\cap...\cap A_\kappa)
+$$
+Par hypothèse de récurrence, 
+$$
+\Pr(A_1\cap...\cap A_\kappa) =
+\Pr(A_1) . \Pr(A_2|A_1) . \Pr(A_3|A_1\cap A_2)
+...
+\Pr(A_\kappa|A_1\cap A_2\cap...\cap A_{\kappa-1})
+$$
+D'où, 
+
+$
+\Pr(A_{\kappa+1} \cap (A_1\cap...\cap A_\kappa))
+=
+\Pr(A_{\kappa+1} | A_1\cap...\cap A_\kappa) \times
+$
+\\
+$~~~~~~~~~~~~~
+\Pr(A_1) . \Pr(A_2|A_1) . \Pr(A_3|A_1\cap A_2)
+...
+\Pr(A_\kappa|A_1\cap A_2\cap...\cap A_{\kappa-1})
+$
+
+D'où, l'établissement de $\Pi(\kappa+1)$.
+
+Donc, en particulier, $\Pi(k)$ est vraie, selon les hypothèses.
+\end{enumerate}
+\end{proof}
+

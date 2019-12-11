@@ -1,0 +1,85 @@
+
+
+\blue{
+\begin{fDefinition}[Problème de Monty Hall]
+$~$
+\begin{itemize}
+\item Soient trois portes :
+ l'une cache une voiture, chacune des deux autres cachant une chèvre.
+\item Le présentateur sait où se cache la voiture.
+\item Le joueur, qui souhaite trouver la voiture, 
+	choisit une des portes (sans que celle-ci ne soit ouverte).
+\item Le présentateur ouvre une autre porte (que celle choisie par le joueur), qui révèle alors une chèvre.
+\item Le présentateur demande au candidat si celui-ci souhaite modifier son choix, 
+	avant que soit effectué l'ouverture des portes.
+\end{itemize}
+\end{fDefinition}
+}
+
+On pose : 
+\begin{itemize}
+\item $ G:= $ "Le joueur gagne" ; 
+\item $ 1^{Vrai} := $ "le premier choix effectué par le joueur est le bon".
+\end{itemize}
+
+\blue{
+\begin{fLemma}
+$$
+\Pr(G) = \Pr(G|1^{Vrai}).\Pr(1^{Vrai})
+	+ \Pr(G|\overline{1^{Vrai}}).\Pr(\overline{1^{Vrai}})
+$$
+\end{fLemma}
+}
+
+\begin{proof}[Preuve]
+$\{1^{Vrai}, \overline{1^{Vrai}} \}$ est une partition de l'espace des possibles.
+On utilise le théorème \ref{theoreme_proba_tot_2}.
+\end{proof}
+
+
+Dans ce qui suit, le problème est implicitement généralisé à $n$ portes 
+(le problème initial supposant $n=3$).
+
+
+\blue{
+\begin{fTheorem}
+$$
+\Pr(G) = \Pr(G|1^{Vrai}).\frac{1}{n}
+	+ \Pr(G|\overline{1^{Vrai}}).\frac{n-1}{n}
+$$
+\end{fTheorem}
+}
+
+\begin{proof}[Preuve]
+$\Pr(1^{Vrai}) = \frac{1}{n}$ ; $\Pr(\overline{1^{Vrai}}) = \frac{n-1}{n}$.
+\end{proof}
+
+\blue{
+\begin{fTheorem}
+$~$
+\begin{itemize}
+\item[--] Si le joueur conserve son premier choix, alors $\Pr(G) = \frac{1}{n}$ ;
+\item[--] Si le joueur modifie son premier choix, alors $\Pr(G) = \frac{n-1}{n}$.
+\end{itemize}
+\end{fTheorem}
+}
+
+\begin{proof}[Preuve]
+\underline{Cas 1 : le joueur conserve son premier choix}
+\begin{itemize}
+\item[--] $\Pr(G|1^{Vrai}) = 1 $ ;
+\item[--] $\Pr(G|\overline{1^{Vrai}}) = 0$.
+\end{itemize}
+D'où, 
+$$ \Pr(G) = 1.\frac{1}{n}
+	+ 0.\frac{n-1}{n} = \frac{1}{n}$$
+
+\underline{Cas 2 : le joueur modifie son premier choix}
+\begin{itemize}
+\item[--] $\Pr(G|1^{Vrai}) = 0$ ;
+\item[--] $\Pr(G|\overline{1^{Vrai}}) = 1$.
+\end{itemize}
+D'où, 
+$$ \Pr(G) = 0.\frac{1}{n}
+	+ 1.\frac{n-1}{n} = \frac{n-1}{n}$$
+\end{proof}

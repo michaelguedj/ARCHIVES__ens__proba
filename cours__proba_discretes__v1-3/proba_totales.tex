@@ -1,0 +1,149 @@
+
+
+%Dans ce qui suit, $(\Omega, E, P)$ est un espace probabilisé.
+
+
+\blue{
+\begin{fDefinition}[Partition]
+$(B_i)_{i\in I}$ est une partition de $B$
+($I$ est supposé fini dénombrable) ;
+si :
+\begin{enumerate}[(i)]
+	\item $\forall i\in I, B_i\not=\emptyset$ ;
+	\item $i\not= j \Rightarrow B_i \cap B_j = \emptyset$ ;
+	\item $B = \bigcup_{i\in I} B_i$.
+\end{enumerate}
+\end{fDefinition}
+}
+
+
+
+%\begin{definition} [événements indépendants]
+%Soient $A$ et $B$ sont 2 événements de probabilité non nulle.
+%$A$ et $B$ sont indépendants si :
+%$P(A|B) = P(A)$ ou $P(B|A) = P(B)$.
+%\end{definition}
+%
+%\begin{lemma}
+%Soit $A$ et $B$ deux évènements.
+%Si $(B_i)_{i\in I}$ est une partition de $B$, alors
+%les événements $A\cap B_i, i\in I$ sont indépendants.
+%\end{lemma}
+%
+%\begin{proof}
+%todo
+%\end{proof}
+
+\blue{
+\begin{fTheorem}
+Soit $A$ et $B$ deux évènements.
+Si $(B_i)_{i\in I}$ est une partition de $B$, alors :
+$$
+	\Pr(A\cap B) = \sum_{i\in I} \Pr(A\cap B_i)
+	$$
+\end{fTheorem}
+}
+
+\begin{proof}[Preuve]
+$$\Pr(A\cap B) = \Pr(A\cap \bigcup_{i\in I} B_i)
+ ~~~~~~~~ ; \big( B = \bigcup_{i\in I} B_i \big)
+	$$
+$$\Pr(A\cap B) = 
+	\Pr \big( \bigcup_{i\in I} A\cap B_i \big)
+	$$
+$$\Pr(A\cap B) = 
+	\sum_{i\in I} \Pr(A\cap B_i)
+	$$
+\end{proof}
+
+\blue{
+\begin{fTheorem}
+Soit $A$ un évènement.
+Si $(B_i)_{i\in I}$ est une partition de $\Omega$, alors :
+$$ \Pr(A) = \sum_{i\in I} \Pr(A\cap B_i)
+$$
+\end{fTheorem}
+}
+
+\begin{proof}[Preuve]
+$$ \Pr(A) = \Pr(A\cap\Omega) = \sum_{i\in I} \Pr(A\cap B_i)
+$$
+\end{proof}
+
+\blue{
+\begin{fTheorem}[théorème des probabilités totales]
+Soit $A$ et $B$ deux évènements.
+Si $(B_i)_{i\in I}$ est une partition de l'évènement $B$, alors :
+$$
+\Pr(A|B) = \sum_{i\in I} \Pr(A|B_i) \Pr(B_i|B)
+$$
+\end{fTheorem}
+}
+
+\begin{proof}[Preuve]
+$$ \Pr(A|B) = \frac{\Pr(A\cap B)}{\Pr(B)}
+$$
+$$ \Pr(A|B) = \frac{\sum_i \Pr(A\cap B_i)} {\Pr(B)}
+$$	
+$$ \Pr(A|B) = 
+	\sum_i \frac{\Pr(A\cap B_i)} {\Pr(B)}
+$$
+$$ \Pr(A|B) = 
+	\sum_i \frac{\Pr(A\cap B_i)} {\Pr(B)}
+			\frac{\Pr(B_i)}{\Pr(B_i)}
+$$
+$$ \Pr(A|B) = 
+	\sum_i \frac{\Pr(A\cap B_i)}{\Pr(B_i)}
+			\frac{\Pr(B_i)}{\Pr(B)}
+$$
+$$ \Pr(A|B) = 
+	\sum_i \Pr(A|B_i)
+			\frac{\Pr(B_i)}{\Pr(B)}
+$$
+$$ \Pr(A|B) = 
+	\sum_i \Pr(A|B_i)
+			\frac{\Pr(B_i\cap B)}{\Pr(B)}
+$$
+$$ \Pr(A|B) = 
+	\sum_i \Pr(A|B_i)
+			\Pr(B_i|B)
+$$
+\end{proof}
+
+
+\blue{
+\begin{fLemma}
+Soient $A$ un événement de probabilité non nulle.
+Alors :
+$$
+\Pr(A|\Omega) = \Pr(A)
+$$
+\end{fLemma}
+}
+
+\begin{proof}[Preuve]
+$\Pr(A|\Omega) = 
+\frac{\Pr(A\cap\Omega)}{\Pr(\Omega)}
+= \Pr(A)
+$.
+\end{proof}
+
+\blue{
+\begin{fTheorem}
+\label{theoreme_proba_tot_2}
+Soit $A$ un évènement.
+Si $(B_i)_{i\in I}$ est une partition de $\Omega$, alors :
+$$
+\Pr(A) = \sum_{i\in I} \Pr(A|B_i) \Pr(B_i)
+$$
+\end{fTheorem}
+}
+
+\begin{proof}[Preuve]
+$$
+\Pr(A)  = \Pr(A|\Omega)  = \sum_{i\in I} \Pr(A|B_i) \Pr(B_i|\Omega)
+$$
+$$
+\Pr(A)  = \sum_{i\in I} \Pr(A|B_i) \Pr(B_i)
+$$
+\end{proof}

@@ -1,0 +1,29 @@
+
+\blue{
+\begin{fTheorem}[Théorème de Bayes]
+Soient $A$ et $B$ deux événements de probabilités non nulles.
+Alors :
+$$
+\Pr(B|A)=\frac{\Pr(A|B) \Pr(B)}{\Pr(A)}
+$$
+\end{fTheorem}
+}
+
+\begin{proof}[Preuve]
+$$
+\Pr(B|A)=\frac{\Pr(B\cap A)}{\Pr(A)}
+\iff
+\Pr(A\cap B) = \Pr(B|A) . \Pr(A)
+$$
+$$
+\Pr(A|B)=\frac{\Pr(A\cap B)}{\Pr(B)}
+\iff
+\Pr(A\cap B) = \Pr(A|B) . \Pr(B)
+$$
+D'où, 
+$$
+\Pr(B|A).\Pr(A) = \Pr(A|B) . \Pr(B)
+\iff
+\Pr(B|A) = \frac{\Pr(A|B) . \Pr(B)} {\Pr(A)}
+$$
+\end{proof}

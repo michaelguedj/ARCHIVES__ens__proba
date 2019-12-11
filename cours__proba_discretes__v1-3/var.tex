@@ -1,0 +1,155 @@
+
+\blue{
+\begin{definition}[Critère]
+Un critère sur $\Omega$ est une application 
+$X : \Omega \rightarrow \mathbb{R}$.
+\end{definition}
+}
+
+On pose :
+$$X(\Omega) := \{X(w_i) : w_i\in\Omega \}$$
+
+$X(\Omega)$ exprime : "l'ensemble des valeurs possibles du critères $X$" sur $\Omega$.
+
+\blue{
+\begin{definition}[Variable aléatoire]
+Une variable aléatoire (selon le critère $X$)
+est une variable parcourant  $X(\Omega)$. 
+\end{definition}
+}
+
+Autrement dit, $X(\Omega)$ est l'ensemble des valeurs 
+que peut prendre une variable aléatoire (selon le critère $X$).
+
+\blue{
+\begin{notation}
+Un abus courant est de confondre la variable aléatoire
+avec son critère : 
+ $X$ est un critère sur $\Omega$, 
+ tout en étant une 
+variable aléatoire selon ce critère.
+Nous suivons cet abus, comme il est de coutume.
+Par suite, 
+\begin{enumerate} 
+\item $X\in X(\Omega)$ ;
+\item Pour $x\in\mathbb{R}$, 
+	"$X = x$" signifie : "$x$ est réalisée", i.e. :
+	$$\exists w\in\Omega,X(w)=x$$ 
+\item Pour $x\in\mathbb{R}$, "$\Pr(X=x)$" signifie :
+	"la probabilité que $x$ soit réalisée" ; autrement dit : 
+	$$
+		\Pr(X=x) :=  \frac{ \#\{w\in\Omega : X(w)=x\} } {\#\Omega}
+	$$
+\end{enumerate} 
+\end{notation}
+}
+
+Il suit que : $\forall x\in\mathbb{R}-X(\Omega)$, 
+$$\Pr(X=x)=0$$
+
+
+\red{
+\begin{fExample}[Fil rouge]
+On lance deux pièces.
+$$
+\Omega = \{FF, PF, FP, PP\}
+$$
+La variable aléatoire $X$ quantifie le nombre de pile :
+$$
+X(\Omega) = \{0, 1, 2 \}
+$$
+On a : 
+$$
+\Pr(X=0) = \frac{ \#\{FF\} } {4} = \frac{1}{4}
+$$
+$$
+\Pr(X=1) = \frac{ \#\{PF, FP\} } {4} = \frac{1}{2}
+$$
+$$
+\Pr(X=2) = \frac{ \#\{PP\} } {4} = \frac{1}{4}
+$$
+\end{fExample}
+}
+
+\blue{
+\begin{fDefinition}[Loi de probabilité d'une variable aléatoire]
+La loi de probabilité d'une variable aléatoire $X$ 
+est la fonction :
+$$\mathcal{L}_X : X(\Omega) \rightarrow [0,1] $$
+$$x \mapsto \Pr(X=x)$$
+\end{fDefinition}
+}
+
+\red{
+\begin{fExample}[Fil rouge]
+$$
+\mathcal{L}_X = \{
+~~ 0 \rightarrow \frac{1}{4};
+~~ 1 \rightarrow \frac{1}{2};
+~~ 2 \rightarrow \frac{1}{4}
+~~ 
+\}
+$$
+\end{fExample}
+}
+
+\blue{
+\begin{fDefinition}[Espérance]
+$$ \uE(X) := \sum_{i} x_i . \Pr(X=x_i)
+$$
+\end{fDefinition}
+}
+
+\red{
+\begin{fExample}[Fil rouge]
+$$\uE(X) = 0.\Pr(X=0) + 1.\Pr(X=1)  + 2.\Pr(X=2)$$ 
+$$\uE(X) = 0.\frac{1}{4} + 1.\frac{1}{2} + 2.\frac{1}{4} = \frac{1}{2} + \frac{1}{2}$$
+$$\uE(X) = 1 $$
+Autrement dit, pour chaque lancé de 2 pièces, 
+on peut ``espérer'' avoir 1 pile.
+%
+En pratique, cela signifie que si on effectue $n$ lancés de 2 pièces,
+alors :
+si $n$ est ``grand'', le nombre de piles est ``proche'' de $n$.
+\end{fExample}
+}
+
+% \blue{
+% \begin{fDefinition}[Variance]
+% $$\uV(X) := \uE\big( (X - \uE(X))^2 \big) $$
+% \end{fDefinition}
+% }
+
+
+% la variance d'une variable aléatoire caractérise sa capacité 
+% à prendre des valeurs plus ou moins éloignées de son espérance
+%La variance caractérise la dispersion d'une distribution.
+
+% De même que l'écart type, 
+% qui a l'avantage pratique
+% de respecter l'ordre de grandeur.
+
+% \blue{
+% \begin{fDefinition}[Ecart-type]
+% $$\sigma := \sqrt{\uV(X)}$$
+% \end{fDefinition} 
+% }
+
+% \begin{fRemark}
+% \begin{itemize}
+% \item La variance est une mesure servant à caractériser la dispersion d'une distribution (ou d'un échantillon).
+% \item De même pour l'écart type que l'on préfère dans la pratique ; 
+	  % car l'écart type peut être comparé à l'ordre de grandeur des valeurs, 
+	  % ce qui n'est pas le cas de la variance.
+% \end{itemize}
+% \end{fRemark}
+
+% \blue{
+% \begin{fTheorem}
+% $$\uV(X) = \sum_{i} (x_i - \uE(X))^2  \times \Pr(X=x_i) $$
+% \end{fTheorem}
+% }
+
+% \begin{proof}
+% Admis. (Voir théorème de tansfert).
+% \end{proof}

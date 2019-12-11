@@ -1,0 +1,132 @@
+
+\subsection{Tests diagnostiques}
+\underline{Problème} :
+Soit un test $t$ diagnostiquant
+ la véracité d'un certain prédicat $p$.
+Quelle est la probabilité qu'un individu $x$ soit vrai pour le prédicat $p$,
+lorsque le test diagnostique $t$ est positif pour $x$ ?
+
+$~\\$
+\noindent
+Prise de décision dans un choix à deux possibilités : positif et négatif.
+
+$~\\$
+\noindent
+\begin{tabular}{| l | l | l | }
+     \hline
+     \textbf{Cause cherchée} 	& \textbf{Test positif}	& \textbf{Test négatif} \\ \hline
+     Présence		 			& Vrai Positif (VP) 			& Faux Négatif (FN) \\ \hline
+     Absence 					& Faux Positif (FP) 			& Vrai Négatif (VN) \\ \hline
+\end{tabular}
+
+%$~\\$
+%Soit $x$ est une variable parcourant les individus d'une certaine
+%population.
+
+\begin{itemize}
+\item $t^+(x) := \big( test(x)  = Vrai  \big)$ ;
+\item $t^-(x) := \big( test(x)  = Faux  \big)$ ;
+\item $p(x) := presence(x)$ ; 
+\item $\overline{p(x)} := \overline{presence(x)}$.
+\end{itemize}
+
+\begin{itemize}
+\item[--] $ VP = VP(test) := t^+(x) | p(x) $ ;  ($t^+(x) $ sachant $p(x) $); 
+\item[--] $ FN = FN(test) := t^-(x) | p(x) $ ;
+\item[--] $ FP = FP(test) := t^+(x) | \overline{p(x)} $ ;
+\item[--] $ VN = VN(test) := t^-(x) | \overline{p(x)} $.
+\end{itemize}
+
+Remarquons (sous cas de la formule des probabilités totales) que : 
+$$ P[VP] + P[FN] = 1$$
+$$ P[FP] + P[VN] = 1$$
+Mais aussi :
+$$ P[VP] + P[FP] = 1$$
+$$ P[FN] + P[VN] = 1$$
+
+\begin{fTheorem}
+$$
+P[p(x) | t^+(x)] =
+\frac{P[VP] .P[p(x)]}
+{P[VP].P[p(x)] + P[FP].P[\overline{p(x)}]}
+$$
+\end{fTheorem}
+
+\begin{proof}[Preuve]
+$$
+P[p(x) | t^+(x)] =
+\frac{P[ t^+(x) | p(x) ] .P[p(x)]}
+{P[t^+(x)]}
+=
+\frac{P[VP] .P[p(x)]}
+{P[t^+(x)]}
+$$
+
+$$
+P[t^+(x)] =
+P[t^+(x) | p(x)].P[p(x)] + P[t^+(x) | \overline{p(x)}].P[\overline{p(x)}]
+$$
+$$
+P[t^+(x)] =
+P[VP].P[p(x)] + P[FP].P[\overline{p(x)}]
+$$
+
+$$
+P[p(x) | t^+(x)] =
+\frac{P[VP] .P[p(x)]}
+{P[VP].P[p(x)] + P[FP].P[\overline{p(x)}]}
+$$
+\end{proof}
+
+\subsection{Exemple : paradoxe du test diagnostique}
+Soit un test $t$ diagnostiquant
+ la véracité d'un certain prédicat $p$.
+On suppose (hypothèse \textit{a priori}), que le prédicat $p$ est satisfait 
+(uniformément)
+pour un $\frac{1}{1000}$ des individus :
+	$$P(p(X)) = \frac{1}{1000}$$
+En outre, $t$ est
+fiable à $99\%$ ; cela signifie que : 
+\begin{enumerate}
+\item 
+si le test est positif pour $x$,
+alors $x$
+satisfait le prédicat $p$ à $\frac{99}{100}$ : 
+	$$P(VP) = \frac{99}{100}$$
+\item 
+si le test est négatif pour $x$,
+alors $x$
+ne satisfait pas le prédicat $p$ à $\frac{99}{100}$ : 
+	$$P(VN) = \frac{99}{100}$$
+\end{enumerate}
+
+
+Quelle est la probabilité qu'un  individu $x$
+vérifie effectivement le prédicat $p$,
+sachant que le test diagnostique $t$ est positif pour $x$ ?
+
+$~\\$
+\noindent
+\underline{Réponse.}
+
+$$
+P[p(X) | t^+(X)] =
+\frac{P[VP] .P[p(X)]}
+{P[VP].P[p(X)] + P[FP].P[\overline{p(X)}]}
+$$
+
+$$ P[VP] + P[FP] = 1 \iff P[FP] = 1 - P[VP] $$
+
+$$P[FP] = 1 - P[VP] = 1- \frac{99}{100} =  \frac{1}{100}$$
+
+$$ P[p(X)] + P[\overline{p(X)}] = 1 
+	\iff  P[\overline{p(X)}] = 1 - P[p(X)] = 1 - \frac{1}{1000} = \frac{999}{1000}$$
+
+$$
+P[p(X) | t^+(X)] =
+\frac{ \frac{99}{100} . \frac{1}{1000}}
+{\frac{99}{100} . \frac{1}{1000} + \frac{1}{100}.\frac{999}{1000}}
+$$
+$$
+P[p(X) | t^+(X)] \simeq 9\%
+$$
