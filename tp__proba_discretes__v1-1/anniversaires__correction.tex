@@ -1,0 +1,272 @@
+
+
+
+\subsection{Problème des anniversaires}
+Dans une classe de 25 élèves, 
+quelle est la probabilité $p$, que deux élèves (au moins), 
+fêtent leurs anniversaires le même jour ? 
+
+
+\subsection{Intuition}
+En vous basant sur votre intuition, estimer la probabilité en question.
+
+
+\subsection{Considérations préalables}
+On suppose :
+\begin{itemize}
+	\item  Que les années comportent $365$ jours par an 
+	(années bissextiles non considérées) ; 
+	\item La distribution des naissances est uniforme ; 
+	i.e. quelque soit le jour $i\in \{1, ..., 365\}$, 
+	quelque soit l'élève $x$, 
+	la probabilité que $x$ fête son anniversaire le jour $i$
+	est de $\frac{1}{165}$.
+\end{itemize}
+
+
+\subsection{Résolution du problème des anniversaires}
+On considère une classe de $n$ élèves.
+%%%
+\begin{enumerate}
+	\item Soit $n=2$. Donner la probabilité $\bar{p}$ que les deux élèves de la
+	classe ne fêtent pas leurs anniversaires le même jour.
+	\textcolor{red}{
+		$$\bar{p} = \frac{365\times 364}{365^2}$$
+		\begin{enumerate}
+			\item Nombre de possibilités satisfaisant la contrainte : $365\times 364$.
+			\item Nombre total de possibilités : $365^2$. 
+		\end{enumerate}
+	}
+	
+	\item Idem pour $n=3$.
+	\textcolor{red}{
+		$$\bar{p} = 
+		\frac{365\times 364 \times 363}{365^3}
+		$$
+		$$
+		\big(
+		\bar{p}=
+		\frac{365\times (365-2+1) \times (365-3+1)}{365^3}
+		\big)
+		$$
+		\begin{enumerate}
+			\item Nombre de possibilités satisfaisant la contrainte : 
+			$365\times 364\times 363$.
+			\item Nombre total de possibilités : $365^3$. 
+		\end{enumerate}
+	}
+	
+	\item Idem pour $n=k$.
+	\textcolor{red}{
+		$$\bar{p} = \frac{365\times 364\times ... \times (365-k+1)}{365^k}$$
+		$$\bar{p} =
+		\prod_{i=1}^{k} \frac{(365-i+1)}{365^k}
+		$$
+		\begin{enumerate}
+			\item Nombre de possibilités satisfaisant la contrainte : 
+			$$365\times 364\times ... \times (365-k+1)$$
+			\item Nombre total de possibilités : $365^k$. 
+		\end{enumerate}
+	}
+	
+	\item 
+	Résoudre le problème des anniversaires
+	(utiliser la relation : $p=1-\bar{p}$).
+	
+	\textcolor{red}{
+		On a, pour $n=k$: 
+		$$
+		p = 1 - \prod_{i=1}^{k} \frac{(365-i+1)}{365^k}
+		$$
+		Soit, pour $n=25$ :
+		$$p =
+		1 - \prod_{i=1}^{25} \frac{(365-i+1)}{365^k}
+		$$
+		Soit : 
+		$$ 0.56 < p < 0.57$$
+	}
+	
+	\item Considérer les cas : $n=30$ ; $n=50$ et $n=80$.
+	\textcolor{red}{
+		\\
+		Pour $n=30$,
+		$$ 0.70 < p < 0.71$$
+		Pour $n=50$,
+		$$ 0.970 < p < 0.971$$
+		Pour $n=80$,
+		$$ p \approx 0.99991$$
+	}
+\end{enumerate}
+
+\subsection{Côté individu}
+Soit un individu : \textit{Toto}, dans une classe de $n=25$ élèves.
+Quelle est la probabilité qu'un (autre) élève soit né le même jour que Toto ?
+
+\begin{enumerate}
+	\item Si $n=2$, quelle est la probabilité $\bar{p}$ pour que l'autre élève
+	soit né un autre jour que Toto ?
+	\textcolor{red}{
+		$$\bar{p} = \frac{364}{365}$$
+	}
+	
+	\item Idem pour $n=3$.
+	\textcolor{red}{
+		$$\bar{p} = \Big(\frac{364}{365} \Big)^2$$
+	}
+	
+	\item Idem pour $n=k$.
+	\textcolor{red}{
+		$$\bar{p} = \Big(\frac{364}{365} \Big)^{k-1}$$
+	}
+	
+	\item Trouver la probabilité $p$ 
+	qu'un (autre) élève soit né le même jour que Toto 
+	(utiliser la relation $p = 1-\bar{p}$).
+	\textcolor{red}{
+	\\
+	Pour $n = k$, 
+		$$
+		p = 1 - \bar{p}
+		= 1 - \Big(\frac{364}{365} \Big)^{k-1}
+		$$
+		Pour $n=25$
+		$$
+		p \approx 0.06
+		$$
+	}
+	
+	\item Que donne $p$ pour $n=30$ ? $n=50$ ? $n=80$ ?
+	\textcolor{red}{
+		\\
+		Pour $n=30$,
+		$$ p \approx 0.08$$
+		Pour $n=50$,
+		$$ p \approx 0.13$$
+		Pour $n=80$,
+		$$ p \approx 0.2$$
+	}
+	
+\end{enumerate}
+
+\subsection{Simulation}
+On modélise une classe de $n$ élèves par une
+liste de $n$ éléments compris entre $1$ et $365$.
+(On suppose que la liste est indexée de $0$ à $n-1$).
+\begin{enumerate}[(A)]
+	\item 
+	L'algorithme, ci-après, 
+	permet de
+	tester si deux personnes, dans la classe, sont nés le même jour.
+\begin{Verbatim}
+test_anniversaire(classe : liste de taille n)
+begin
+  for i = 0, ..., n-1 do
+    for j = i+1, ..., n-1 do 
+      if classe[i] = classe[j] then 
+        return True
+      end if
+  end for; end for
+  return False
+end
+\end{Verbatim}
+
+
+\begin{fLemma}
+Au $i$-ième tour de la première boucle,
+en supposant que l'algorithme ne s'est pas arrêté,
+$$
+\forall x\in\{0, ..., i-1 \}, 
+\forall j\in\{x+1, ..., n-1\}, 
+classe[i] \not= classe[j]
+$$
+\end{fLemma}
+%
+\begin{proof}
+Par l'absurde, 
+$$
+\exists x\in\{0, ..., i-1 \}, 
+\exists j\in\{x+1, ..., n-1\}, 
+classe[x] = classe[j]
+$$
+Donc au tour de boucle $x$, 
+l'algorithme s'est arrêté, 
+ce qui contredit notre hypothèse.
+\end{proof}
+
+\begin{fTheorem}
+Au $i$-ième tour de la première boucle,
+en supposant que l'algorithme ne s'est pas arrêté,
+$$
+	\forall j\in \{0, ..., i-1\},
+	classe[i] \not= classe[j]
+$$
+\end{fTheorem}
+	%
+\begin{proof}[Preuve]
+Par le lemme précédant, 
+$$
+\forall x\in\{0, ..., i-1 \}, 
+\forall j\in\{x+1, ..., n-1\}, 
+classe[i] \not= classe[j]
+$$
+On pose :
+$$
+E(x):= \{x+1, ..., n-1\}
+$$
+On a ainsi : 
+$$
+\forall x\in\{0, ..., i-1 \}, 
+\forall j\in E(x), 
+classe[i] \not= classe[j]
+$$
+On remarque que :
+$$E(0) \supset E(1) \supset ... \supset E(i-1)$$
+(En effet : 
+$$E(0) = \{1, ..., n-1\}$$
+$$E(1) = \{2, ..., n-1\}$$
+$$ ... $$
+$$E(i-1) = \{i, ..., n-1\}$$
+)
+
+De plus, 
+$$
+i\in E(i-1)
+$$
+Donc, 
+$$
+\forall x\in\{0, ..., i-1\}, i\in E(x)
+$$
+On rappelle que :
+$$
+\forall x\in\{0, ..., i-1 \}, 
+\forall j\in E(x), 
+classe[i] \not= classe[j]
+$$
+D'où, 
+$$
+\forall x\in\{0, ..., i-1 \}, 
+classe[x] \not= classe[i]
+$$
+\end{proof}
+	
+	\item 
+L'algorithme, ci-après, 
+permet de
+tester si une personne, dans la classe, est né le même jour que Toto.
+\begin{Verbatim}
+test_anniversaire_toto(classe : liste de taille n)
+begin
+  // Toto est supposé en position 0 (sans perte de généralité)
+  for i = 1, ..., n-1 do
+    if classe[0] = classe[i] then 
+      return True
+    end if
+  end for
+  return False
+end
+\end{Verbatim}
+
+\item 
+Via implémentation, évaluer ``pratiquement''
+la justesse des résultats des sections précédentes.
+\end{enumerate}
