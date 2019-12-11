@@ -1,0 +1,218 @@
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+%%% ----------------------------------------------------------
+%%% Addings
+\input{../../latex_additions/__technical_additions}
+%%% End of the addings
+%%% ----------------------------------------------------------
+
+
+
+\title{Probabilités discrètes -- Résumé\\ -- version 0.1}
+\date{\vspace{-5ex}}
+\author{Dr M. GUEDJ}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LICENCE CC %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\includegraphics[scale=0.5]{licence/licence_cc.png}
+	
+	\begin{small}
+``Probabilités discrètes -- Résumé'' de Dr Michaël GUEDJ est mis à disposition selon les termes de la licence Creative Commons Attribution 4.0 International.
+Fondé(e) sur une œuvre à 
+		\url{https://github.com/michaelguedj/ens__proba}.
+	\end{small}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Loi de probabilité}
+\blue{
+\begin{fDefinition}[Loi de probabilité]
+Une loi de probabilité (ou probabilité) $\Pr$,
+sur $2^\Omega$,
+est une application vérifiant : 
+\begin{enumerate}
+	\item Masse unitaire : $\Pr(\Omega)=1$ ;
+	\item Positivité : $\Pr: 2^\Omega \rightarrow [0, 1]$ ;
+	\item Additivité : $\forall A,B\in2^\Omega$, 
+			$$A\cap B=\emptyset \Rightarrow 
+			\Pr(A\cup B) = \Pr(A) + \Pr(B)$$
+\end{enumerate}
+\end{fDefinition}
+}
+Dans ce qui suit $\Pr$ est une probabilité sur $\Omega$.
+
+\blue{
+\begin{fTheorem}
+$\forall A\in 2^\Omega,$
+$$
+\Pr(A) = 1 - \Pr(\bar{A})
+$$
+\end{fTheorem}
+}
+
+\blue{
+\begin{fTheorem}
+$\forall A, B \in 2^\Omega$, 
+$$
+\Pr(A\cup B) = \Pr(A) + \Pr(B) - \Pr(A\cap B)
+$$
+\end{fTheorem}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probabilité conditionnelle}
+\blue{
+\begin{fDefinition}[Probabilité conditionnelle]
+Une probabilité conditionnelle est la probabilité d'un événement 
+sachant qu'un autre événement a eu lieu.
+Soient deux événements $A$ et $B$ (i.e. $A,B\in 2^\Omega$), 
+si $\Pr(A)\not=0$, alors la probabilité conditionnelle de $B$
+conditionnée par $A$ (aussi appelée probabilité de $B$ sachant $A$) est définie par : 
+$$
+\Pr(B | A) = \frac{\Pr(A\cap B)}{\Pr(A)}
+$$
+\end{fDefinition}}
+
+\noindent
+\textbf{Exemple.}
+Soit une classe de lycée. Nous considérons les événements suivants :
+\begin{itemize}
+\item[--] F : `'un élève est une fille'';
+\item[--] A : ``un élève étudie l'allemand''.
+\end{itemize}
+
+La classe vérifie :
+\begin{center}
+\begin{tabular}{|l|c|r|}
+  \hline
+   & $F$ & $\neg F$ \\
+  \hline
+  $A$ & 10 & 7 \\
+  $\neg A$ & 4 & 9 \\
+  \hline
+\end{tabular}
+\end{center}
+
+Quelle est la probabilité qu'un élève étudie l'allemand, sachant que cet élève est une fille
+(i.e. $\Pr(A|F)$) ?
+On a par définition :
+$$
+\Pr(A|F) = \frac{\Pr(A \wedge F)}{\Pr(F)}
+$$
+Ici :
+$$
+\Pr(A|F)= \frac{\text{Nombre de filles étudiant l'allemand}}
+			 {\text{Nombre de filles}}
+$$
+Soit :
+$$
+\Pr(A|F) = \frac{10}{14} = \frac{5}{7}
+$$
+
+\blue{
+\begin{fTheorem}
+$\forall A,B\in 2^\Omega$, $\Pr(A)\not=0$,
+$$
+\Pr(A\cap B) = \Pr(B|A) . \Pr(A)
+$$ 
+\end{fTheorem}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Théorème des probabilités totales}
+\blue{
+\begin{fTheorem}[Théorème des probabilités totales]
+Soit $A$ un évènement.
+Si $(B_i)_{i\in I}$ est une partition de $\Omega$, alors :
+$$
+\Pr(A) = \sum_{i\in I} \Pr(A|B_i) \Pr(B_i)
+$$
+\end{fTheorem}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Théorème de Bayes}
+\blue{
+\begin{fTheorem}[Théorème de Bayes]
+Soient $A$ et $B$ deux événements de probabilités non nulles.
+Alors :
+$$
+\Pr(B|A)=\frac{\Pr(A|B) \Pr(B)}{\Pr(A)}
+$$
+\end{fTheorem}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Variable aléatoire -- Espérance}
+\red{
+\begin{fExample}[Fil rouge]
+On lance deux pièces.
+$$
+\Omega = \{FF, PF, FP, PP\}
+$$
+La variable aléatoire $X$ quantifie le nombre de pile :
+$$
+X(\Omega) = \{0, 1, 2 \}
+$$
+On a : 
+$$
+\Pr(X=0) = \frac{ \#\{FF\} } {4} = \frac{1}{4}
+$$
+$$
+\Pr(X=1) = \frac{ \#\{PF, FP\} } {4} = \frac{1}{2}
+$$
+$$
+\Pr(X=2) = \frac{ \#\{PP\} } {4} = \frac{1}{4}
+$$
+\end{fExample}
+}
+
+\red{
+\begin{fExample}[Fil rouge]
+$$
+\mathcal{L}_X = \{
+~~ 0 \rightarrow \frac{1}{4};
+~~ 1 \rightarrow \frac{1}{2};
+~~ 2 \rightarrow \frac{1}{4}
+~~ 
+\}
+$$
+\end{fExample}
+}
+
+\blue{
+\begin{fDefinition}[Espérance]
+$$ \uE(X) := \sum_{i} x_i . \Pr(X=x_i)
+$$
+\end{fDefinition}
+}
+
+\red{
+\begin{fExample}[Fil rouge]
+$$\uE(X) = 0.\Pr(X=0) + 1.\Pr(X=1)  + 2.\Pr(X=2)$$ 
+$$\uE(X) = 0.\frac{1}{4} + 1.\frac{1}{2} + 2.\frac{1}{4} = \frac{1}{2} + \frac{1}{2}$$
+$$\uE(X) = 1 $$
+Autrement dit, pour chaque lancé de 2 pièces, 
+on peut ``espérer'' avoir 1 pile.
+%
+En pratique, cela signifie que si on effectue $n$ lancés de 2 pièces,
+alors :
+si $n$ est ``grand'', le nombre de piles est ``proche'' de $n$.
+\end{fExample}
+}
+\end{document}
